@@ -93,5 +93,32 @@ namespace EventEmitting.Tests
             }
         }
 
+        [Test]
+        public void Program_Test()
+        {
+            Program.Main();
+        }
+
+        public class Program
+        {
+            public static void Main()
+            {
+                IEventEmitter eventEmitter = new EventEmitter();
+
+                eventEmitter.Subscribe<MyEvent>(OnMyEvent);
+
+                eventEmitter.Emit(new MyEvent {value = "Hello, World!"});
+            }
+
+            public static void OnMyEvent(MyEvent myEvent)
+            {
+                Console.WriteLine(myEvent.value);
+            }
+
+            public class MyEvent
+            {
+                public string value;
+            }
+        }
     }
 }
