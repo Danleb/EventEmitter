@@ -18,7 +18,7 @@ public class Program
 
         eventEmitter.Subscribe<MyEvent>(OnMyEvent);
 
-        eventEmitter.Emit("Hello, World!");
+        eventEmitter.Emit(new MyEvent {value = "Hello, World!"});
     }
 
     public static void OnMyEvent(MyEvent myEvent)
